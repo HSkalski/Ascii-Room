@@ -4,6 +4,8 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfig = require('../../webpack.dev.js')
 
+const GameState = require('./gamestate');
+
 if (process.env.NODE_ENV === 'development') {
     console.log("Dev Mode")
     const compiler = webpack(webpackConfig);
@@ -16,3 +18,7 @@ if (process.env.NODE_ENV === 'development') {
 const PORT = process.env.PORT || 2200;
 const server = app.listen(PORT);
 console.log("Server started on port ", PORT);
+
+
+
+const gs = new GameState();
