@@ -1,0 +1,78 @@
+body {
+  background-color: black;
+  background-image: radial-gradient(rgba(0, 150, 0, 0.75), black 130%);
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  padding: 2rem;
+  color: white;
+  font: 1.3rem Inconsolata, monospace;
+  text-shadow: 0 0 10px #ffffff;
+  text-align: center;
+}
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 5px);
+  pointer-events: none;
+}
+
+::selection {
+  background: #0080FF;
+  text-shadow: none;
+}
+
+pre {
+  margin: 0;
+} 
+
+
+.animate-heading {
+  white-space: pre; 
+  overflow: hidden;
+  animation: write-heading 5s both;
+}
+.animate-body {
+  white-space: pre;
+  overflow: hidden;
+  animation: write-block 7.5s both;
+}
+
+
+@keyframes write-heading {
+  from{
+    margin-left: 50%;
+    width: 0%;
+    
+  }
+  50%{
+    margin-left: 0%;
+    width: 100%;
+    font-size: 1.3rem;
+  }
+  80%{
+
+  }
+  to {
+    font-size: 0.5rem;
+  }
+}
+@keyframes write-block{
+  0%{
+    height: 0%;
+  }
+  50% {
+    height: 0%;
+  }
+  100% {
+    height: 80%
+  }
+}
+
+#game {
+  /* font-size: 5px; */
+}
