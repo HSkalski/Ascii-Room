@@ -64,9 +64,9 @@ let sceneRender = (state) => {
         //choose level of darkness based on distance
         let interval = RENDER_DIST/(Object.keys(WALL_SHADES).length - 1);
         let shade = ' ';
-        for(let i = 0; i < Object.keys(WALL_SHADES).length - 1; i++){
+        for(let i = 1; i < Object.keys(WALL_SHADES).length - 1; i++){      
             if(distToWall < interval*i){
-                shade = WALL_SHADES[i];
+                shade = WALL_SHADES[i-1];
                 break;
             }
         }

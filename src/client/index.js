@@ -1,5 +1,7 @@
-import { Game } from './game'
-import './css/style.css'
+import { Game } from './game';
+import './css/style.css';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 let main = () => {
     let game = new Game();

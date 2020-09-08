@@ -1,4 +1,4 @@
-body {
+#keep-css{
   background-color: black;
   background-image: radial-gradient(rgba(0, 150, 0, 0.75), black 130%);
   height: 100vh;
@@ -6,11 +6,11 @@ body {
   overflow: hidden;
   padding: 1rem;
   color: rgb(255, 243, 217);
-  font: 1.3rem Inconsolata, monospace;
+  font: 2vw Inconsolata, monospace;
   text-shadow: 0 0 10px #ffffff;
   text-align: center;
 }
-body::after {
+#keep-css::after {
   content: "";
   position: absolute;
   top: 0;
@@ -52,13 +52,13 @@ pre {
   50%{
     margin-left: 0%;
     width: 100%;
-    font-size: 1.3rem;
+    font-size: 2vw;
   }
   80%{
 
   }
   to {
-    font-size: 0.5rem;
+    font-size: 1vw;
   }
 }
 @keyframes write-block{
@@ -72,7 +72,25 @@ pre {
     height: 80%
   }
 }
+@keyframes write-nav{
+  0%{
+    padding-bottom:1vmin;
+    padding-left:5vmin;
+    padding-right:5vmin;
+  }
+  100%{
+
+  }
+}
 
 #gameDiv {
   font-size: 0.5vmin;
+}
+
+#nav-bar{
+  padding-left: 20vmin;
+  padding-right: 20vmin;
+  padding-bottom: 2vmin;
+  font-size: 2vmin;
+  animation: write-nav 3s both;
 }
