@@ -5,7 +5,7 @@ body {
   margin-top: 0px;
   overflow: hidden;
   padding: 1rem;
-  color: white;
+  color: rgb(255, 243, 217);
   font: 1.3rem Inconsolata, monospace;
   text-shadow: 0 0 10px #ffffff;
   text-align: center;
@@ -34,12 +34,12 @@ pre {
 .animate-heading {
   white-space: pre; 
   overflow: hidden;
-  animation: write-heading 1.5s both;
+  animation: write-heading 3s both;
 }
 .animate-body {
   white-space: pre;
   overflow: hidden;
-  animation: write-block 2.5s both;
+  animation: write-block 5s both;
 }
 
 
@@ -74,5 +74,5 @@ pre {
 }
 
 #gameDiv {
-  font-size: 5px;
+  font-size: 0.5vmin;
 }

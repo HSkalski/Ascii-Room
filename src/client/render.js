@@ -1,6 +1,11 @@
 //get state from game.js, ray traces scene and draws others
 // eventually move state to state.js instead of game
 
+//BUG: 
+// rendered X is flipped from map from some reason
+//  'FIX':
+//      swapped ray angle which fixed rendering but then strafe left/right and turn left/right controls were inverted, changed in updateMove
+
 const Constants = require('./constants');
 const {MAP_WIDTH, MAP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, STEP_SIZE, RENDER_DIST, PLAYER_FOV, WALL_SHADES, FLOOR_SHADES,TOP_SHADES} = Constants;
 
@@ -14,16 +19,19 @@ for(let i = 0; i < SCREEN_WIDTH; i++){
 export let render = (state) => {
     sceneRender(state);
     otherRender(state);
+    //mapRender(state);
+    boarderRender();
     sendToDiv();
 }
 
 // Ray Casting 2 1/2 D renderer, similar to that of Wolfenstein3D
 let sceneRender = (state) => {
     let {mapData, pX, pY, pA} = state;
-    console.log("Rendering Scene")
+    //console.log("Rendering Scene")
 
     for(let x = 0; x < SCREEN_WIDTH; x++){
-        let rA = (pA - PLAYER_FOV/2) + (x / SCREEN_WIDTH) * PLAYER_FOV; // calculate angle of current ray being cast
+        let rA = (pA + PLAYER_FOV/2) - (x / SCREEN_WIDTH) * PLAYER_FOV; // calculate angle of current ray being cast
+        
         //   1/2 of of fov on each side, offset with current column 
         //         1/2   1/2
         //        \    |    /
@@ -91,7 +99,30 @@ let sceneRender = (state) => {
 }
 
 let otherRender = (state) => {
-    console.log("Rendering Others")
+    //console.log("Rendering Others")
+}
+
+let mapRender = (state) => {
+    //console.log("Rendering Map")
+    for(let y = 0; y < MAP_HEIGHT; y++){
+        for(let x = 0; x < SCREEN_WIDTH; x++){
+            screenBuff[y][x] = state.mapData[y][x];//state.mapData[Math.round(y/2)][Math.round(x/2)];
+        }
+    }
+}
+let boarderRender = () => {
+    //console.log("Rendering Boarder")
+    for(let y = 0; y < SCREEN_HEIGHT; y++){
+        if(y == 0 || y == SCREEN_HEIGHT-1){
+            for(let x = 0; x < SCREEN_WIDTH; x++){
+                screenBuff[y][x] = '#';
+            }
+        }else{
+            screenBuff[y][0] = '#';
+            screenBuff[y][SCREEN_WIDTH-1] = '#';
+        }
+
+    }
 }
 
 let sendToDiv = () => {

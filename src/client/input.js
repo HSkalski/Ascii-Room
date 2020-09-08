@@ -15,8 +15,6 @@ export let handleKeyInput = () => {
     }
 }
 
-
-
 //Listen for key presses
 document.addEventListener("keydown", function(e){
     switch(e.keyCode){
@@ -101,7 +99,7 @@ let lockChangeAlert = () => {
 }
 
 let cameraLoop = (e) => {
-    console.log("Mouse Movement X: "+e.movementX)
+    //console.log("Mouse Movement X: "+e.movementX)
     deltaMouse += e.movementX;
 }
 

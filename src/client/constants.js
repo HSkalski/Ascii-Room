@@ -2,7 +2,7 @@ module.exports = Object.freeze({
     MAP_WIDTH: 16,
     MAP_HEIGHT: 16,
 
-    SCREEN_WIDTH: 300,
+    SCREEN_WIDTH: 320,
     SCREEN_HEIGHT: 100,
     
     RENDER_DIST: 16,

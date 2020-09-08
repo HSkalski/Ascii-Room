@@ -1,1 +1,2 @@
-// update state function
+// update from server
+// send updates to server
