@@ -2,9 +2,9 @@ body {
   background-color: black;
   background-image: radial-gradient(rgba(0, 150, 0, 0.75), black 130%);
   height: 100vh;
-  margin: 0;
+  margin-top: 0px;
   overflow: hidden;
-  padding: 2rem;
+  padding: 1rem;
   color: white;
   font: 1.3rem Inconsolata, monospace;
   text-shadow: 0 0 10px #ffffff;
@@ -34,12 +34,12 @@ pre {
 .animate-heading {
   white-space: pre; 
   overflow: hidden;
-  animation: write-heading 5s both;
+  animation: write-heading 1.5s both;
 }
 .animate-body {
   white-space: pre;
   overflow: hidden;
-  animation: write-block 7.5s both;
+  animation: write-block 2.5s both;
 }
 
 
@@ -73,6 +73,6 @@ pre {
   }
 }
 
-#game {
-  /* font-size: 5px; */
+#gameDiv {
+  font-size: 5px;
 }

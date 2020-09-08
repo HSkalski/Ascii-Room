@@ -1,14 +1,15 @@
 import { Game } from './game'
-import {render} from './render'
 
 import './css/style.css'
 
 
-let game = new Game();
+
 
 let main = () => {
+    let game = new Game();
     game.startGame();
 }
+
 
 
 

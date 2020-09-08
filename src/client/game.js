@@ -1,9 +1,9 @@
 // has player info, takes input from input.js, outputs to renderer
 import { render } from './render';
+import { handleKeyInput } from './input';
 const Constants = require('./constants');
-const {MAP_WIDTH, MAP_HEIGHT} = Constants;
+const {MAP_WIDTH, MAP_HEIGHT, PLAYER_MOV_SPEED, PLAYER_ROT_SPEED} = Constants;
 
-require('./input')
 
 export class Game{
 
@@ -12,7 +12,7 @@ export class Game{
         console.log("Game Constructor")
         this.playerX = 13;
         this.playerY = 4;
-        this.playerA = 0;
+        this.playerA = -0.5;
 
         //Init map matrix
         this.map = new Array(MAP_WIDTH); // 16x16 by default
@@ -56,7 +56,7 @@ export class Game{
         return {
             mapData: this.map,
             pX: this.playerX,
-            py: this.playerY,
+            pY: this.playerY,
             pA: this.playerA
         }
     }
@@ -69,28 +69,52 @@ export class Game{
     }
 
     updateMove(){
-        
+        let input = handleKeyInput();
+        if(input.mF){
+
+            this.playerX += Math.sin(this.playerA) * PLAYER_MOV_SPEED * this.dt;
+            this.playerY += Math.cos(this.playerA) * PLAYER_MOV_SPEED * this.dt;
+        }
+        if(input.mB){
+            this.playerX -= Math.sin(this.playerA) * PLAYER_MOV_SPEED * this.dt;
+            this.playerY -= Math.cos(this.playerA) * PLAYER_MOV_SPEED * this.dt;
+        }
+        if(input.sL){ 
+            this.playerX += Math.sin(this.playerA - (Math.PI/2)) * PLAYER_MOV_SPEED * this.dt;
+            this.playerY += Math.cos(this.playerA - (Math.PI/2)) * PLAYER_MOV_SPEED * this.dt;
+        }
+        if(input.sR){
+            this.playerX += Math.sin(this.playerA + (Math.PI/2)) * PLAYER_MOV_SPEED * this.dt;
+            this.playerY += Math.cos(this.playerA + (Math.PI/2)) * PLAYER_MOV_SPEED * this.dt;
+        }
+
+        this.playerA += input.dM * PLAYER_ROT_SPEED * 2;
+    }
+    
+    handleCollision(){
+
     }
 
     update(){
         console.log("lööp brøther")
         //      Process:
-        // Get input
-        
-        // translate character
-        this.updateTime()
+        // Get input, translate character
+        this.updateMove();
+
+        //check for / handle collision
 
         // get most recent other positions from networking
-
+        //// networking to come ////
 
         // render frame
         render(this.getState());
+        
         // get delta T
         this.updateTime();
     }
 
     startGame(){
-        //setInterval(this.update.bind(this), 1000)
-        this.update();
+        setInterval(this.update.bind(this), 1000/30)
+        //this.update();
     }
 }

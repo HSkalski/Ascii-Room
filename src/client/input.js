@@ -1,5 +1,22 @@
 let gameDiv = document.getElementById("gameDiv");
 
+let strafeLeft = false, strafeRight = false, moveFwd = false, moveBack = false;
+let deltaMouse = 0
+
+export let handleKeyInput = () => {
+    let tempMouse = deltaMouse;
+    deltaMouse = 0;
+    return {
+        sL: strafeLeft,
+        sR: strafeRight,
+        mF: moveFwd,
+        mB: moveBack,
+        dM: tempMouse,
+    }
+}
+
+
+
 //Listen for key presses
 document.addEventListener("keydown", function(e){
     switch(e.keyCode){
@@ -85,7 +102,7 @@ let lockChangeAlert = () => {
 
 let cameraLoop = (e) => {
     console.log("Mouse Movement X: "+e.movementX)
-    
+    deltaMouse += e.movementX;
 }
 
 document.addEventListener('pointerlockchange', lockChangeAlert, false);
