@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
 const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfig = require('../../webpack.dev.js')
 
 const GameState = require('./gamestate');
 
 if (process.env.NODE_ENV === 'development') {
+    const webpackDevMiddleware = require('webpack-dev-middleware');
     console.log("Dev Mode")
     const compiler = webpack(webpackConfig);
     app.use(webpackDevMiddleware(compiler));
