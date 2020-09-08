@@ -21,6 +21,7 @@
   "homepage": "https://github.com/HSkalski/Ascii-Room#readme",
   "dependencies": {
     "bootstrap": "^4.5.2",
+    "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
@@ -31,7 +32,6 @@
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "babel-loader": "^8.1.0",
-    "cross-env": "^7.0.2",
     "css-loader": "^4.2.2",
     "html-webpack-plugin": "^4.4.1",
     "mini-css-extract-plugin": "^0.11.0",
