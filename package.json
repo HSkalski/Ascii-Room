@@ -41,7 +41,8 @@
     "webpack-merge": "^5.1.3"
   },
   "engines":{
-    "node": "12.10.0"
+    "node": "12.10.0",
+    "npm": "6.10.3",
   },
   "comment": {
     "//": "figure out way to not min the art / turn art into svg"
