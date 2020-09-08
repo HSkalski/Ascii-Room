@@ -10,8 +10,8 @@ export class Game{
     constructor(){
 
         console.log("Game Constructor")
-        this.playerX = 2;
-        this.playerY = 14;
+        this.playerX = 3;
+        this.playerY = 9.1;
         this.playerA = Math.PI;
 
         //Init map matrix

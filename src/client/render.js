@@ -19,7 +19,7 @@ for(let i = 0; i < SCREEN_WIDTH; i++){
 export let render = (state) => {
     sceneRender(state);
     otherRender(state);
-    //mapRender(state);
+    mapRender(state);
     boarderRender();
     sendToDiv();
 }
@@ -104,9 +104,17 @@ let otherRender = (state) => {
 
 let mapRender = (state) => {
     //console.log("Rendering Map")
-    for(let y = 0; y < MAP_HEIGHT; y++){
-        for(let x = 0; x < SCREEN_WIDTH; x++){
-            screenBuff[y][x] = state.mapData[y][x];//state.mapData[Math.round(y/2)][Math.round(x/2)];
+    let mapScale = 2;
+    let yOff = 3;
+    let xOff = SCREEN_WIDTH - MAP_WIDTH * mapScale - 5;
+    let pXint = parseInt(state.pX+.5); // plus .5 to deal with render offset of world
+    let pYint = parseInt(state.pY+.5);
+    for(let y = 0; y < MAP_HEIGHT * mapScale; y++){
+        for(let x = 0; x < MAP_WIDTH* mapScale; x++){
+            screenBuff[y+yOff][x+xOff] = state.mapData[parseInt(y/mapScale)][parseInt(x/mapScale)];
+            if(parseInt(y/mapScale) == pYint && parseInt(x/mapScale) == pXint){
+                screenBuff[y+yOff][x+xOff] = '@';
+            }
         }
     }
 }
@@ -115,11 +123,11 @@ let boarderRender = () => {
     for(let y = 0; y < SCREEN_HEIGHT; y++){
         if(y == 0 || y == SCREEN_HEIGHT-1){
             for(let x = 0; x < SCREEN_WIDTH; x++){
-                screenBuff[y][x] = '#';
+                screenBuff[y][x] = '-';
             }
         }else{
-            screenBuff[y][0] = '#';
-            screenBuff[y][SCREEN_WIDTH-1] = '#';
+            screenBuff[y][0] = '|';
+            screenBuff[y][SCREEN_WIDTH-1] = '|';
         }
 
     }
