@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development node src/server/server.js",
-    "start": "cross-env NODE_ENV=production node src/server/server.js",
+    "start": "node src/server/server.js",
     "build": "webpack --config webpack.dev.js"
   },
   "repository": {
@@ -45,6 +45,7 @@
     "npm": "6.10.3"
   },
   "comment": {
-    "//": "figure out way to not min the art / turn art into svg"
+    "//": "figure out way to not min the art / turn art into svg",
+    "//": "start: cross-env NODE_ENV=production node src/server/server.js"
   }
 }
