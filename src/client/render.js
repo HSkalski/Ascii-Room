@@ -97,9 +97,53 @@ let sceneRender = (state) => {
 
     }
 }
-
+let drawRect = (x,y,w,h,symbol) => {
+    //sanitize input
+    x = parseInt(x);
+    y = parseInt(y);
+    w = parseInt(w);
+    h = parseInt(h);
+    console.log("DrawRect: ", x, y, w, h);
+    if(x+w < SCREEN_WIDTH && y+h < SCREEN_HEIGHT){
+        for(let i = 0; i < h; i++){
+            for(let j = 0; j < w; j++){
+                if(i == 0 || i == h-1 || j == 0 || j == w-1){
+                    screenBuff[y+i][x+j] = symbol;
+                } else {
+                    screenBuff[y+i][x+j] = " ";
+                }
+            }
+        }
+    }
+}
 let otherRender = (state) => {
-    //console.log("Rendering Others")
+    let {others, mapData, pX, pY, pA} = state;
+    console.log("Rendering Others: ",others);
+    Object.keys(others).forEach( ( otherID ) => {
+        let otherX = others[otherID].x;
+        let otherY = others[otherID].y;
+        let otherA = 0;
+        let otherDist = Math.pow( Math.pow( pX - otherX, 2) + Math.pow(pY - otherY, 2), 0.5 ); //distance between player and other
+        let diffX = otherX - pX;
+        let diffY = otherY - pY;
+        let angOff = Math.atan2(diffY, diffX) - Math.PI/2; //Angle from any quadrant between player and other off X axis
+        otherA = angOff - (-1*pA)%(Math.PI*2) // find the difference, invert player angle to account for atan2, mod 360deg
+        if(otherA < -1*Math.PI) // scale it to half circle +/-
+            otherA+=2*Math.PI
+        if(otherA > Math.PI)
+            otherA-=2*Math.PI
+
+        if(otherA > -1*PLAYER_FOV/2 && otherA < PLAYER_FOV/2){ // Other is within FOV
+            let sliceWidth = (PLAYER_FOV / 2) / (SCREEN_WIDTH / 2) // Width of each column
+            let slice = parseInt(otherA / sliceWidth) // determine which column center of other is in
+            let otherHeight = SCREEN_HEIGHT / otherDist;
+            drawRect(SCREEN_WIDTH/2+slice, SCREEN_HEIGHT/2 - otherHeight/3, otherHeight, otherHeight, "#");
+        }
+
+    });
+
+
+
 }
 
 let mapRender = (state) => {

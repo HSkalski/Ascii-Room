@@ -21,16 +21,6 @@
   pointer-events: none;
 }
 
-::selection {
-  background: #0080FF;
-  text-shadow: none;
-}
-
-pre {
-  margin: 0;
-} 
-
-
 .animate-heading {
   white-space: pre; 
   overflow: hidden;
