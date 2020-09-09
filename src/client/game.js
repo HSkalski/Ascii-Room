@@ -10,9 +10,9 @@ export class Game{
     constructor(){
 
         console.log("Game Constructor")
-        this.playerX = 3;
-        this.playerY = 9.1;
-        this.playerA = Math.PI;
+        this.playerX = 1;
+        this.playerY = 11;
+        this.playerA = 2.7;
 
         //Init map matrix
         this.map = new Array(MAP_WIDTH); // 16x16 by default
@@ -90,7 +90,7 @@ export class Game{
         this.playerA -= input.dM * PLAYER_ROT_SPEED * 2;
 
         //console.log("X: ",Math.round(this.playerX)," Y: ", Math.round(this.playerY));
-        console.log("X: ",this.playerX.toFixed(2)," Y: ", this.playerY.toFixed(2));
+        //console.log("X: ",this.playerX.toFixed(2)," Y: ", this.playerY.toFixed(2));
     }
     
     // ray traced collision management
