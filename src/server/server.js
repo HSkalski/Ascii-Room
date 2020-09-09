@@ -24,19 +24,16 @@ const io = socketio(server);
 
 io.on('connection', (socket) => {
     console.log("Connection: ", socket.id);
-    socket.on('connect', handleConnect);
-    socket.on('update', handleUpdate);
-    socket.on('disconnect', handleDisconnect);
+
+    gs.addPlayer(socket);
+
+    socket.on('update', (data) => {
+        gs.updatePlayer(socket, data);
+    });
+
+    socket.on('disconnect', () => {
+        gs.removePlayer(socket);
+    });
 });
 
 const gs = new GameState();
-
-let handleConnect = () => {
-    gs.addPlayer(this);
-}
-let handleUpdate = (data) => {
-    gs.updatePlayer(this, data);
-}
-let handleDisconnect = () => {
-    gs.removePlayer(this);
-}

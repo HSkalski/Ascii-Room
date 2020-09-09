@@ -1,6 +1,7 @@
 // has player info, takes input from input.js, outputs to renderer
 import { render } from './render';
 import { handleKeyInput } from './input';
+import { sendUpdate } from './networking';
 const Constants = require('./constants');
 const {MAP_WIDTH, MAP_HEIGHT, PLAYER_MOV_SPEED, PLAYER_ROT_SPEED} = Constants;
 
@@ -13,6 +14,8 @@ export class Game{
         this.playerX = 1;
         this.playerY = 11;
         this.playerA = 2.7;
+
+        this.others = {};
 
         //Init map matrix
         this.map = new Array(MAP_WIDTH); // 16x16 by default
@@ -56,7 +59,8 @@ export class Game{
             mapData: this.map,
             pX: this.playerX,
             pY: this.playerY,
-            pA: this.playerA
+            pA: this.playerA,
+            others: this.others
         }
     }
 
@@ -123,6 +127,16 @@ export class Game{
         }
     }
 
+    handleOtherUpdate(data){
+        //update others object
+        //console.log(data);
+        this.others = data;
+    }
+
+    handleSendUpdate(){
+        sendUpdate({x: this.playerX, y: this.playerY});
+    }
+
     update(){
         //console.log("lööp brøther")
         //      Process:
@@ -132,7 +146,7 @@ export class Game{
         this.handleCollision();
 
         // get most recent other positions from networking
-        //// networking to come ////
+        this.handleSendUpdate();
 
         // render frame
         render(this.getState());

@@ -4,8 +4,9 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './networking';
 
+let game = new Game();
+
 let main = () => {
-    let game = new Game();
     game.startGame();
 }
 
@@ -14,3 +15,7 @@ let eventWindowLoaded = () => {
     main()
 }
 window.addEventListener('load', eventWindowLoaded, false);
+
+export const handleUpdate = (others) => {
+    game.handleOtherUpdate(others);
+}
