@@ -137,7 +137,7 @@ let otherRender = (state) => {
             let sliceWidth = (PLAYER_FOV / 2) / (SCREEN_WIDTH / 2) // Width of each column
             let slice = parseInt(otherA / sliceWidth) // determine which column center of other is in
             let otherHeight = SCREEN_HEIGHT / otherDist;
-            drawRect(SCREEN_WIDTH/2+slice, SCREEN_HEIGHT/2 - otherHeight/3, otherHeight, otherHeight, "#");
+            drawRect(SCREEN_WIDTH/2+slice - otherHeight/2, SCREEN_HEIGHT/2 - otherHeight/3, otherHeight, otherHeight, "#");
         }
 
     });
