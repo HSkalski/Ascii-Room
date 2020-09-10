@@ -99,8 +99,7 @@ let sceneRender = (state) => {
 
     }
 }
-// Current bug: 
-//      Getting close to others results in bad screenbuff locations
+
 let drawRect = (x,y,w,h,symbol) => {
     //sanitize input
     x = parseInt(x);
