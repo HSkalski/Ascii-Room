@@ -132,6 +132,8 @@ let drawRect = (x,y,w,h,symbol) => {
         }
     }
 }
+// BUG: 
+//     Others don't render in order of distance so they overlap sometimes.
 let otherRender = (state) => {
     let {others, mapData, pX, pY, pA} = state;
     Object.keys(others).forEach( ( otherID ) => {
@@ -153,6 +155,8 @@ let otherRender = (state) => {
             let slice = parseInt(otherA / sliceWidth) // determine which column center of other is in
             let otherHeight = SCREEN_HEIGHT / otherDist;
 
+            // curret object occlusion -
+            // better way to do it would be to cast a few rays at parts, deterimining which parts of the other to draw
             if(otherDist < (depthMap[parseInt(SCREEN_WIDTH/2+slice)])){ // if other is closer than closest wall
                 drawRect(SCREEN_WIDTH/2+slice - otherHeight/2, SCREEN_HEIGHT/2 - otherHeight/3, otherHeight, otherHeight, "#");
             }
