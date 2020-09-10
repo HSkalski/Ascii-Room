@@ -99,6 +99,8 @@ let sceneRender = (state) => {
 
     }
 }
+// Current bug: 
+//      Getting close to others results in bad screenbuff locations
 let drawRect = (x,y,w,h,symbol) => {
     //sanitize input
     x = parseInt(x);
@@ -106,7 +108,7 @@ let drawRect = (x,y,w,h,symbol) => {
     w = parseInt(w);
     h = parseInt(h);
     //console.log("DrawRect: ", x, y, w, h);
-    if(x+w < SCREEN_WIDTH && y+h < SCREEN_HEIGHT){
+    if(x+w < SCREEN_WIDTH && y+h < SCREEN_HEIGHT && x >= 0 && y >= 0){ //if rectagle is completely within the screen
         for(let i = 0; i < h; i++){
             for(let j = 0; j < w; j++){
                 if(i == 0 || i == h-1 || j == 0 || j == w-1){
@@ -116,10 +118,10 @@ let drawRect = (x,y,w,h,symbol) => {
                 }
             }
         }
-    } else {
+    } else { // if rectangle isn't within the screen, then just draw what you can while checking
         for(let i = 0; i < h; i++){
             for(let j = 0; j < w; j++){
-                if(y+i < SCREEN_HEIGHT && x+j < SCREEN_WIDTH){
+                if(y+i < SCREEN_HEIGHT && x+j < SCREEN_WIDTH && x+j >= 0 && y+i >= 0){
                     if(i == 0 || i == h-1 || j == 0 || j == w-1){
                         screenBuff[y+i][x+j] = symbol;
                     } else {
