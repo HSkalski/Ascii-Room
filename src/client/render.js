@@ -116,6 +116,18 @@ let drawRect = (x,y,w,h,symbol) => {
                 }
             }
         }
+    } else {
+        for(let i = 0; i < h; i++){
+            for(let j = 0; j < w; j++){
+                if(y+i < SCREEN_HEIGHT && x+j < SCREEN_WIDTH){
+                    if(i == 0 || i == h-1 || j == 0 || j == w-1){
+                        screenBuff[y+i][x+j] = symbol;
+                    } else {
+                        screenBuff[y+i][x+j] = " ";
+                    }
+                }
+            }
+        }
     }
 }
 let otherRender = (state) => {
@@ -135,14 +147,11 @@ let otherRender = (state) => {
             otherA-=2*Math.PI
 
         if(otherA > -1*PLAYER_FOV/2 && otherA < PLAYER_FOV/2){ // Other is within FOV
-            let sliceWidth = (PLAYER_FOV / 2) / (SCREEN_WIDTH / 2) // Width of each column
+            let sliceWidth = (PLAYER_FOV) / (SCREEN_WIDTH) // Width of each column
             let slice = parseInt(otherA / sliceWidth) // determine which column center of other is in
             let otherHeight = SCREEN_HEIGHT / otherDist;
 
-            //console.log("slice: "+(SCREEN_WIDTH/2+slice - otherHeight/2).toFixed(2));
-            //console.log("depths: "+otherDist.toFixed(1)+" "+(depthMap[SCREEN_WIDTH/2+slice - otherHeight/2]).toFixed(1));
-            if(otherDist < (depthMap[parseInt(SCREEN_WIDTH/2+slice - otherHeight/2)])){ // if other is closer than closest wall
-
+            if(otherDist < (depthMap[parseInt(SCREEN_WIDTH/2+slice)])){ // if other is closer than closest wall
                 drawRect(SCREEN_WIDTH/2+slice - otherHeight/2, SCREEN_HEIGHT/2 - otherHeight/3, otherHeight, otherHeight, "#");
             }
         }
