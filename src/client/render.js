@@ -3,7 +3,7 @@
 
 //BUG: 
 // rendered X is flipped from map from some reason
-//  'FIX':
+//  Temp 'FIX':
 //      swapped ray angle which fixed rendering but then strafe left/right and turn left/right controls were inverted, changed in updateMove
 
 const Constants = require('./constants');
