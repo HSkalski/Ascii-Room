@@ -16,6 +16,8 @@ let screenBuff = new Array(SCREEN_WIDTH);
 for(let i = 0; i < SCREEN_WIDTH; i++){
     screenBuff[i] = new Array(SCREEN_HEIGHT);
 }
+// depth map for determining wheather to render another player
+let depthMap = new Array(SCREEN_WIDTH);
 export let render = (state) => {
     sceneRender(state);
     otherRender(state);
@@ -75,7 +77,7 @@ let sceneRender = (state) => {
         //  Happens after distance calculation to get euclidean dist shading
         //  edit: changes look based on fov
         distToWall = distToWall * Math.cos(rA-pA);
-
+        depthMap[x] = distToWall; // update depth map info
         // calculate top and bottom of wall in this row 
         let wallTop = (SCREEN_HEIGHT/2) - ( SCREEN_HEIGHT / (1.5*distToWall) ); ///half the height of screen minus a proportion of the screenheight depending on distance to wall
         let wallBot = SCREEN_HEIGHT - wallTop;// flipped onto the bottom
@@ -103,7 +105,7 @@ let drawRect = (x,y,w,h,symbol) => {
     y = parseInt(y);
     w = parseInt(w);
     h = parseInt(h);
-    console.log("DrawRect: ", x, y, w, h);
+    //console.log("DrawRect: ", x, y, w, h);
     if(x+w < SCREEN_WIDTH && y+h < SCREEN_HEIGHT){
         for(let i = 0; i < h; i++){
             for(let j = 0; j < w; j++){
@@ -118,7 +120,6 @@ let drawRect = (x,y,w,h,symbol) => {
 }
 let otherRender = (state) => {
     let {others, mapData, pX, pY, pA} = state;
-    console.log("Rendering Others: ",others);
     Object.keys(others).forEach( ( otherID ) => {
         let otherX = others[otherID].x;
         let otherY = others[otherID].y;
@@ -137,7 +138,13 @@ let otherRender = (state) => {
             let sliceWidth = (PLAYER_FOV / 2) / (SCREEN_WIDTH / 2) // Width of each column
             let slice = parseInt(otherA / sliceWidth) // determine which column center of other is in
             let otherHeight = SCREEN_HEIGHT / otherDist;
-            drawRect(SCREEN_WIDTH/2+slice - otherHeight/2, SCREEN_HEIGHT/2 - otherHeight/3, otherHeight, otherHeight, "#");
+
+            //console.log("slice: "+(SCREEN_WIDTH/2+slice - otherHeight/2).toFixed(2));
+            //console.log("depths: "+otherDist.toFixed(1)+" "+(depthMap[SCREEN_WIDTH/2+slice - otherHeight/2]).toFixed(1));
+            if(otherDist < (depthMap[parseInt(SCREEN_WIDTH/2+slice - otherHeight/2)])){ // if other is closer than closest wall
+
+                drawRect(SCREEN_WIDTH/2+slice - otherHeight/2, SCREEN_HEIGHT/2 - otherHeight/3, otherHeight, otherHeight, "#");
+            }
         }
 
     });
