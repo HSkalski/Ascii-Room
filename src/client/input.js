@@ -2,16 +2,26 @@ let gameDiv = document.getElementById("gameDiv");
 
 let strafeLeft = false, strafeRight = false, moveFwd = false, moveBack = false;
 let deltaMouse = 0
-
+let isFocused = false;
 export let handleKeyInput = () => {
     let tempMouse = deltaMouse;
     deltaMouse = 0;
-    return {
-        sL: strafeLeft,
-        sR: strafeRight,
-        mF: moveFwd,
-        mB: moveBack,
-        dM: tempMouse,
+    if(isFocused){
+        return {
+            sL: strafeLeft,
+            sR: strafeRight,
+            mF: moveFwd,
+            mB: moveBack,
+            dM: tempMouse,
+        }
+    }else{
+        return {
+            sL: false,
+            sR: false,
+            mF: false,
+            mB: false,
+            dM: 0,
+        }
     }
 }
 
@@ -91,9 +101,11 @@ let lockChangeAlert = () => {
     if(document.pointerLockElement === gameDiv ||
     document.mozPointerLockElement === gameDiv){
         console.log('The Pointer is LOCKED')
+        isFocused = true;
         document.addEventListener("mousemove", cameraLoop, false);
     } else {
         console.log('The Pointer is UNNLOCKED')
+        isFocused = false;
         document.removeEventListener("mousemove", cameraLoop, false)
     }
 }
