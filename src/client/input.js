@@ -128,7 +128,6 @@ document.addEventListener('pointerlockchange', lockChangeAlert, false);
 document.addEventListener('mozpointerlockchange', lockChangeAlert, false);
 
 fovSlider.oninput = () => {
-    console.log(fovSlider.value);
     setFOV(fovSlider.value);
 }
 
