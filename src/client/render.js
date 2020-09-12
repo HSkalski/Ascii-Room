@@ -7,7 +7,7 @@
 //      swapped ray angle which fixed rendering but then strafe left/right and turn left/right controls were inverted, changed in updateMove
 
 const Constants = require('./constants');
-const {MAP_WIDTH, MAP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, STEP_SIZE, RENDER_DIST, PLAYER_FOV, WALL_SHADES, FLOOR_SHADES,TOP_SHADES} = Constants;
+let {MAP_WIDTH, MAP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, STEP_SIZE, RENDER_DIST, PLAYER_FOV, WALL_SHADES, FLOOR_SHADES,TOP_SHADES} = Constants;
 
 let gameDiv = document.getElementById('gameDiv');
 
@@ -206,3 +206,7 @@ let sendToDiv = () => {
     }
     gameDiv.innerHTML = screen; // send final frame to screen
 }
+
+export let setFOV = (nFovDeg) => {
+    PLAYER_FOV = nFovDeg * Math.PI / 180;
+} 

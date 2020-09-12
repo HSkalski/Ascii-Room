@@ -3,7 +3,7 @@ import { render } from './render';
 import { handleKeyInput } from './input';
 import { sendUpdate } from './networking';
 const Constants = require('./constants');
-const {MAP_WIDTH, MAP_HEIGHT, PLAYER_MOV_SPEED, PLAYER_ROT_SPEED} = Constants;
+let {MAP_WIDTH, MAP_HEIGHT, PLAYER_MOV_SPEED, PLAYER_ROT_SPEED} = Constants;
 
 
 export class Game{
@@ -158,5 +158,10 @@ export class Game{
     startGame(){
         setInterval(this.update.bind(this), 1000/30)
         //this.update();
+    }
+
+    setSens(sens){
+        console.log("new sens: "+sens);
+        PLAYER_ROT_SPEED = sens;
     }
 }

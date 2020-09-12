@@ -1,8 +1,17 @@
+import { setFOV } from './render';
+import { setSens } from './index';
+
 let gameDiv = document.getElementById("gameDiv");
 
 let strafeLeft = false, strafeRight = false, moveFwd = false, moveBack = false;
 let deltaMouse = 0
 let isFocused = false;
+
+let sensSlider = document.getElementById('sensSlider');
+let fovSlider = document.getElementById('fovSlider');
+
+
+
 export let handleKeyInput = () => {
     let tempMouse = deltaMouse;
     deltaMouse = 0;
@@ -117,3 +126,12 @@ let cameraLoop = (e) => {
 
 document.addEventListener('pointerlockchange', lockChangeAlert, false);
 document.addEventListener('mozpointerlockchange', lockChangeAlert, false);
+
+fovSlider.oninput = () => {
+    console.log(fovSlider.value);
+    setFOV(fovSlider.value);
+}
+
+sensSlider.oninput = () => {
+    setSens(sensSlider.value/50000);
+}
