@@ -19,3 +19,7 @@ window.addEventListener('load', eventWindowLoaded, false);
 export const handleUpdate = (others) => {
     game.handleOtherUpdate(others);
 }
+
+export let setSens = (nSens) => {
+    game.setSens(nSens)
+}

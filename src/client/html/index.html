@@ -39,8 +39,9 @@
                         <div class="dropdown-menu">
                             <!-- Dropdown menu links -->
                             Click game to start<br>
-                            WASD: Movement,<br>
-                            Mouse: camera
+                            WASD: Movement<br>
+                            Mouse: Camera<br>
+                            ctl+a, ctl+c: Screenshot
                         </div>
                     </div>
                     <div class="btn-settings dropup d-flex justify-content-center">
@@ -49,8 +50,25 @@
                         </button>
                         <div class="dropdown-menu ">
                             <!-- Dropdown menu links -->
-                            FOV Slider: < TO COME > <br>
-                            Mouse Sens: < TO COME > <br>
+
+                            <div class="d-flex justify-content-center my-4">
+                                FOV Slider:
+                                <span class="font-weight-bold purple-text mr-2 mt-1">30</span>
+                                <form class="range-field w-75">
+                                  <input id="fovSlider" class="border-0" type="range" min="30" max="180" />
+                                </form>
+                                <span class="font-weight-bold purple-text ml-2 mt-1">180</span>
+                            </div>
+
+                            <div class="d-flex justify-content-center my-4">
+                                Mouse Sens:
+                                <span class="font-weight-bold purple-text mr-2 mt-1">0</span>
+                                <form class="range-field w-75">
+                                  <input id="sensSlider" class="border-0" type="range" min="0" max="100" />
+                                </form>
+                                <span class="font-weight-bold purple-text ml-2 mt-1">1</span>
+                            </div>
+
                             Other Setting: ........ <br>
                         </div>
                     </div>
@@ -59,7 +77,7 @@
                             About
                         </button>
                         <div class="dropdown-menu">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a justo a nunc rhoncus elementum ut ac lacus. Duis a mi ut leo fermentum accumsan. Cras purus erat, finibus vitae nisi sed, iaculis mollis neque. In mattis dolor sed blandit dignissim. Praesent aliquam dapibus nunc nec finibus. Nulla enim nunc, interdum at pulvinar nec, mollis a ex. Ut id bibendum augue, quis pretium ex.</p>
+                            <p>Ascii-Room is a multiplayer room exploration experience using a 2.5D rendering engine outputing in only ASCII/Unicode characters. Below is the link to the projects development page</p>
                             <a href="https://github.com/HSkalski/Ascii-Room">Github Link</a>
                         </div>
                     </div>
