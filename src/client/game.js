@@ -2,6 +2,7 @@
 import { render } from './render';
 import { handleKeyInput } from './input';
 import { sendUpdate } from './networking';
+import { setPlayerCount } from './index';
 const Constants = require('./constants');
 let {MAP_WIDTH, MAP_HEIGHT, PLAYER_MOV_SPEED, PLAYER_ROT_SPEED} = Constants;
 
@@ -16,7 +17,7 @@ export class Game{
         this.playerA = 2.7;
 
         this.others = {};
-
+        this.otherCount = 0;
         //Init map matrix
         this.map = new Array(MAP_WIDTH); // 16x16 by default
         for(let i = 0; i < MAP_WIDTH; i++){
@@ -131,6 +132,11 @@ export class Game{
         //update others object
         //console.log(data);
         this.others = data;
+        if(this.otherCount != Object.keys(data).length){
+            this.otherCount = Object.keys(data).length;
+            console.log(this.otherCount);
+            setPlayerCount(this.otherCount+1);
+        }
     }
 
     handleSendUpdate(){
