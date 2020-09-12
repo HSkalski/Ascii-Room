@@ -23,3 +23,8 @@ export const handleUpdate = (others) => {
 export let setSens = (nSens) => {
     game.setSens(nSens)
 }
+
+let playerCountP = document.getElementById("playerCount");
+export let setPlayerCount = (num) => {
+    playerCountP.innerHTML = "Players Connected: "+num;
+}
