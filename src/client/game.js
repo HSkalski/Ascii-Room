@@ -161,7 +161,6 @@ export class Game{
     }
 
     setSens(sens){
-        console.log("new sens: "+sens);
         PLAYER_ROT_SPEED = sens;
     }
 }
