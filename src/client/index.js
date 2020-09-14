@@ -20,6 +20,10 @@ export const handleUpdate = (others) => {
     game.handleOtherUpdate(others);
 }
 
+export const handleInit = (data) => {
+    game.serverInit(data);
+}
+
 export let setSens = (nSens) => {
     game.setSens(nSens)
 }
@@ -28,3 +32,4 @@ let playerCountP = document.getElementById("playerCount");
 export let setPlayerCount = (num) => {
     playerCountP.innerHTML = "Players Connected: "+num;
 }
+

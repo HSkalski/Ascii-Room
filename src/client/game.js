@@ -3,7 +3,7 @@ import { render } from './render';
 import { handleKeyInput } from './input';
 import { sendUpdate } from './networking';
 import { setPlayerCount } from './index';
-const Constants = require('./constants');
+const Constants = require('../constants');
 let {MAP_WIDTH, MAP_HEIGHT, PLAYER_MOV_SPEED, PLAYER_ROT_SPEED} = Constants;
 
 
@@ -13,7 +13,7 @@ export class Game{
 
         console.log("Game Constructor")
         this.playerX = 1;
-        this.playerY = 11;
+        this.playerY = 1;
         this.playerA = 2.7;
 
         this.others = {};
@@ -32,11 +32,11 @@ export class Game{
         this.map[0]= ['#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'];
         this.map[1]= ['#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'];
         this.map[2]= ['#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'];
-        this.map[3]= ['#','.','.','#','#','#','#','.','.','.','.','.','.','.','.','#'];
-        this.map[4]= ['#','.','.','#','.','.','#','.','.','.','.','.','.','.','.','#'];
-        this.map[5]= ['#','.','.','#','.','.','#','.','.','.','.','.','.','.','.','#'];
-        this.map[6]= ['#','.','.','#','.','.','#','.','.','.','.','.','.','.','.','#'];
-        this.map[7]= ['#','.','.','#','.','#','#','.','.','.','.','.','.','.','.','#'];
+        this.map[3]= ['#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'];
+        this.map[4]= ['#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'];
+        this.map[5]= ['#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'];
+        this.map[6]= ['#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'];
+        this.map[7]= ['#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'];
         this.map[8]= ['#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'];
         this.map[9]= ['#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'];
         this.map[10]=['#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'];
@@ -53,7 +53,12 @@ export class Game{
         this.fps = 0;
 
     }
-
+    
+    serverInit(data){
+        this.map = data.map;
+        this.playerX = data.x;
+        this.playerY = data.y;
+    }
 
     getState(){
         return {
@@ -138,6 +143,7 @@ export class Game{
             setPlayerCount(this.otherCount+1);
         }
     }
+
 
     handleSendUpdate(){
         sendUpdate({x: this.playerX, y: this.playerY});
