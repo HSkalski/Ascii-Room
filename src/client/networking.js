@@ -2,7 +2,7 @@
 // send updates to server
 
 import io from 'socket.io-client'
-import { handleUpdate } from './index';
+import { handleUpdate, handleInit } from './index';
 const socket = io();
 
 socket.on('connect', () => {
@@ -16,4 +16,8 @@ export const sendUpdate = (state) => {
 
 socket.on('playerUpdate', (others) => {
     handleUpdate(others);
+})
+
+socket.on('init', (data) => {
+    handleInit(data);
 })

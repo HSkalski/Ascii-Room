@@ -1,6 +1,6 @@
 module.exports = Object.freeze({
-    MAP_WIDTH: 16,
-    MAP_HEIGHT: 16,
+    MAP_WIDTH: 26,
+    MAP_HEIGHT: 26,
 
     SCREEN_WIDTH: 320,
     SCREEN_HEIGHT: 100,
