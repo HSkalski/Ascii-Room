@@ -120,10 +120,10 @@ export class Game{
                     rays[r].X += Math.sin(rays[r].dir) * rayStep * this.dt 
                     rays[r].Y += Math.cos(rays[r].dir) * rayStep * this.dt 
                     
-                    console.log(Math.round(rays[r].X), Math.round(rays[r].Y), (this.map[Math.round(rays[r].Y)] [Math.round(rays[r].X)]));
+                    //console.log(Math.round(rays[r].X), Math.round(rays[r].Y), (this.map[Math.round(rays[r].Y)] [Math.round(rays[r].X)]));
                     
                     if(this.map[Math.round(rays[r].Y)] [Math.round(rays[r].X)] != "#"){
-                        console.log("Found air")
+                        //console.log("Found air")
                         this.playerX = rays[r].X
                         this.playerY = rays[r].Y
                         airFound = true
