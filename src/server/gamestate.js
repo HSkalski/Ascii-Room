@@ -148,8 +148,11 @@ class GameState{
         socket.emit('init', {map: this.map, x:tryX, y:tryY});
     }
     updatePlayer(socket, data){
-        this.players[socket.id].x = data.x;
-        this.players[socket.id].y = data.y;
+        try{
+            this.players[socket.id].x = data.x;
+            this.players[socket.id].y = data.y;
+        }catch(e){
+            console.log(e);
         
     }
     removePlayer(socket){
