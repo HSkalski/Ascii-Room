@@ -169,18 +169,13 @@ let otherRender = (state) => {
 
 let mapRender = (state) => {
     //console.log("Rendering Map")
-    let h = 25
-    //(Math.min(MAP_HEIGHT,MAP_WIDTH)
-    let mapScale = Math.floor(3 - Math.min(MAP_HEIGHT,MAP_WIDTH)/30); // auto scale map
-    if(mapScale < 1){ mapScale = 1; }
+    let mapScale = 2;
     let yOff = 3;
     let xOff = SCREEN_WIDTH - MAP_WIDTH * mapScale - 5;
     let pXint = parseInt(state.pX+.5); // plus .5 to deal with render offset of world
     let pYint = parseInt(state.pY+.5);
     for(let y = 0; y < MAP_HEIGHT * mapScale; y++){
         for(let x = 0; x < MAP_WIDTH* mapScale; x++){
-            //console.log(state.mapData[parseInt(y/mapScale)][parseInt(x/mapScale)]);
-            console.log(y+yOff, x+xOff);
             screenBuff[y+yOff][x+xOff] = state.mapData[parseInt(y/mapScale)][parseInt(x/mapScale)];
             if(parseInt(y/mapScale) == pYint && parseInt(x/mapScale) == pXint){
                 screenBuff[y+yOff][x+xOff] = '@';
