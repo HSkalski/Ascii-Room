@@ -153,7 +153,7 @@ class GameState{
             this.players[socket.id].y = data.y;
         }catch(e){
             console.log(e);
-        
+        }
     }
     removePlayer(socket){
         delete this.players[socket.id];
