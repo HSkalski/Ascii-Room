@@ -1,7 +1,7 @@
 
 const Constants = require('../constants');
 
-let {MAP_WIDTH, MAP_HEIGHT, MAP_DEPTH} = Constants;
+let {MAP_WIDTH, MAP_HEIGHT} = Constants;
 
 let randRange = (min,max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -43,22 +43,16 @@ class GameState{
 
 // Chamber method
 //  Divide X and Y with wall, create opening in each
-//  do for each chamber
-
-// Planned updates to map creation:
-//      - min size of chamber (3 because of walls placing on odd numbers)
-//      - 
+// do for each chamber
 
     initChamberMap(){
         this.initEmptyMap();
-
-        this.addWalls(1, MAP_WIDTH-2, 1, MAP_HEIGHT-2, 1, MAP_DEPTH);
+        this.addWalls(1, MAP_WIDTH-2, 1, MAP_HEIGHT-2, 1, 3);
         this.addBoarderWall();
 
         printArray(this.map);
     }
 
-    // add walls to the map in the x1, x2, y1, y2 region, depth marking when to stop
     addWalls(xMin, xMax, yMin, yMax, depth, maxDepth){
         console.log(xMin, xMax, yMin, yMax, "depth: "+depth);
         let xWall=0,yWall=0;
@@ -78,10 +72,10 @@ class GameState{
         }
         this.createHoles(xMin, xMax, yMin, yMax, xWall, yWall);
 
-        //printArray(this.map);
+        printArray(this.map);
         // call for each chamber until depth is reached
         if(depth < maxDepth){
-            if(xMin != xWall-1 && yMin != yWall-1) // check that there is a space
+            if(xMin != xWall-1 && yMin != yWall-1)
                 this.addWalls(xMin, xWall-1, yMin, yWall-1, depth+1, maxDepth);//top left
             if(xWall+1 != xMax && yMin != yWall-1)
                 this.addWalls(xWall+1, xMax, yMin, yWall-1, depth+1, maxDepth);//top right
@@ -154,12 +148,8 @@ class GameState{
         socket.emit('init', {map: this.map, x:tryX, y:tryY});
     }
     updatePlayer(socket, data){
-        try{
-            this.players[socket.id].x = data.x;
-            this.players[socket.id].y = data.y;
-        } catch(e){
-            console.log(e);
-        }
+        this.players[socket.id].x = data.x;
+        this.players[socket.id].y = data.y;
         
     }
     removePlayer(socket){
