@@ -1,0 +1,9 @@
+services:
+  ascii-room:
+    image: node:18-alpine
+    command: sh -c "npm install && npm run dev"
+    ports: 
+      - 2200:2200
+    working_dir: /ascii-room
+    volumes:
+      - ./:/ascii-room
