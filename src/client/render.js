@@ -178,7 +178,7 @@ let mapRender = (state) => {
         for(let x = 0; x < MAP_WIDTH* mapScale; x++){
             screenBuff[y+yOff][x+xOff] = state.mapData[parseInt(y/mapScale)][parseInt(x/mapScale)];
             if(parseInt(y/mapScale) == pYint && parseInt(x/mapScale) == pXint){
-                screenBuff[y+yOff][x+xOff] = '@';
+                screenBuff[y+yOff][x+xOff] = '<span style="color: red">@</span>';//'@';
             }
         }
     }
